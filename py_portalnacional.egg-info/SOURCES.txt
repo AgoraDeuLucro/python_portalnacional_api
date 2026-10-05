@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+py_portalnacional/__init__.py
+py_portalnacional/wrapper.py
+py_portalnacional.egg-info/PKG-INFO
+py_portalnacional.egg-info/SOURCES.txt
+py_portalnacional.egg-info/dependency_links.txt
+py_portalnacional.egg-info/requires.txt
+py_portalnacional.egg-info/top_level.txt
