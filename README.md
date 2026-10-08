@@ -118,9 +118,11 @@ ev = eventos(
 # Registrar (XML do pedido de evento assinado)
 ev.registrar(chave_acesso, xml_evento)
 
-# Consultar
+# Listar todos os eventos da chave (ADN)
 ev.consultar_todos(chave_acesso)
-ev.consultar_por_tipo(chave_acesso, "101101")  # cancelamento direto
+
+# Consultar um evento na Sefin (tipo + sequencial; sequencial 1 quando o tipo não se repete)
+ev.consultar_por_sequencial(chave_acesso, "101101", 1)  # cancelamento direto
 ```
 
 Códigos de evento (referência):
@@ -174,7 +176,7 @@ c.consultar_movimentos(nsu=0)
 |---|---|---|
 | `nfse` | Sefin | `emitir`, `consultar`, `emitir_decisao_judicial`, `emitir_lote_assincrono`, `consultar_lote` |
 | `dps` | Sefin | `consultar_chave`, `verificar_existe` |
-| `eventos` | Sefin | `registrar`, `consultar_todos`, `consultar_por_tipo`, `consultar_por_sequencial` |
+| `eventos` | Sefin (registro e consulta pontual) e ADN (listagem) | `registrar`, `consultar_todos` (ADN), `consultar_por_sequencial` (Sefin, tipo + sequencial) |
 | `distribuicao` | ADN Contribuintes | `consultar_dfe`, `consultar_eventos` |
 | `parametros` | Sefin | `consultar_convenio`, `consultar_aliquotas`, `consultar_retencoes`, `consultar_beneficios` |
 | `danfse` | ADN DANFSE | `obter_pdf` |

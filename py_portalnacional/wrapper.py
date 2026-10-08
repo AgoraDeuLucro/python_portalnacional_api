@@ -504,7 +504,11 @@ class dps(auth):
 
 
 class eventos(auth):
-    """Registro e consulta de eventos da NFS-e (Sefin Nacional)."""
+    """Registro (Sefin) e consulta de eventos da NFS-e.
+
+    A listagem de todos os eventos de uma chave é do ADN.
+    A Sefin só consulta um evento por tipo e número sequencial.
+    """
 
     def registrar(self, chave_acesso, xml_evento):
         """
@@ -539,25 +543,12 @@ class eventos(auth):
         """
         Lista todos os eventos vinculados à chave de acesso.
 
-        GET /nfse/{chaveAcesso}/eventos
-        """
-        url = self.base_url_sefin + f"/nfse/{chave_acesso}/eventos"
-        response = self.request("GET", url=url)
-        if response is None or response.status_code not in (200, 201):
-            return {}
-        return self._parse_response_body(response) or {}
+        GET {ADN}/NFSe/{ChaveAcesso}/Eventos
 
-    def consultar_por_tipo(self, chave_acesso, tipo_evento):
+        A Sefin não publica GET em ``/nfse/{chaveAcesso}/eventos``
+        (essa rota só aceita POST de registro).
         """
-        Consulta eventos por chave e tipo.
-
-        GET /nfse/{chaveAcesso}/eventos/{tipoEvento}
-
-        Args:
-            chave_acesso (str): Chave de acesso da NFS-e.
-            tipo_evento (str): Código do evento (ex.: ``"101101"``).
-        """
-        url = self.base_url_sefin + f"/nfse/{chave_acesso}/eventos/{tipo_evento}"
+        url = self.base_url_adn + f"/NFSe/{chave_acesso}/Eventos"
         response = self.request("GET", url=url)
         if response is None or response.status_code not in (200, 201):
             return {}
